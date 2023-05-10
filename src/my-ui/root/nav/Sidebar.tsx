@@ -1,48 +1,81 @@
-import { ItemIndicator } from "@radix-ui/react-context-menu";
-import { Home, Settings, UserCircle } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+
+import {
+  Home,
+ LogOut,
+  Settings,
+  UserCircle,
+} from "lucide-react";
 import Link from "next/link";
 
-interface SideBarProps {
+interface SideBarProps {}
 
+export function Sidebar({}: SideBarProps) {
+  return (
+    <div className="flex h-screen  flex-col items-center justify-center gap-5">
+    <Separator className="my-1" />
+      <h1 className="text-3xl h-[150px]">APP</h1>
+    <NavLinks />
+    <SystemLinks/>
+    </div>
+  );
 }
 
-export function Sidebar({}:SideBarProps){
+interface NavLinksProps {}
 
-return (
- <div className='w-full h-full flex flex-col items-center justify-center'>
-    <NavLinks/>
+export function NavLinks({}: NavLinksProps) {
+  const links = [
+    { name: "Home", route: "/", Icon: Home },
+    { name: "Profile", route: "/profile",Icon: UserCircle},
+  ];
+  return (
+      <div className="flex h-full w-full flex-col items-center justify-start">
 
-       
-</div>
-);
+   
+          <nav className="flex h-[70%] mt-[100px] w-full flex-col items-center justify-start gap-5">
+
+              {links.map((item) => {
+                  const Icon = item.Icon;
+                  return (
+                    <div className="w-full">
+                    <Separator className="my-2 " /> 
+                      <Button
+                          variant="ghost"
+                          size="sm"
+                          className="min-h-12 flex  items-center justify-evenly gap-10 hover:text-accent-foreground">
+                          <Link
+                              href={item.route}
+                              className=" m-5 ">
+                              {item.name}
+                          </Link>
+                          <Icon className="ml-2 h-5 w-5" />
+                      </Button>
+                      </div>
+                  );
+              })}
+          </nav>
+    </div>
+
+  );
 }
 
 
-interface NavLinksProps {
+interface SystemLinksProps { }
 
-}
+export function SystemLinks({ }: SystemLinksProps) {
 
-export function NavLinks({}:NavLinksProps){
-    const links = [
-        { name: "Home", route: '/', Icon: Home },
-        { name: "Profile", route: '/profile', Icon: UserCircle },
-
-    ]
-return (
- <nav className='w-full h-full flex flex-col items-center justify-center'>
- {links.map((item)=>{
-    const Icon = item.Icon
     return (
-        <div className="w-[70%] flex items-center justify-evenly gap-2 hover:bg-secondary" >
-            <Link 
-            href={item.route}
-                className="w-full flex items-center justify-evenly gap-5 bg-purple-600 text-xl active:bg-destructive">
-                {item.name}
-            </Link>
-            <Icon size={"2rem"} />
-        </div>
-    )
- })}
- </nav>
-);
+        <nav className="flex h-[10%] w-full flex-col items-center justify-start mb-5">
+            <Button size="sm"
+                className="min-h-12 flex w-[90%] items-center justify-evenly gap-10 hover:text-accent-foreground">
+                <Settings />
+            </Button>
+            <Button size="sm"
+            className="min-h-12 flex w-[90%] items-center justify-evenly gap-10 hover:text-accent-foreground">
+            <LogOut/>
+            </Button>
+            <Separator className="my-4" />
+        </nav>
+    );
 }
