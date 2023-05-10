@@ -7,6 +7,7 @@ const nextConfig = {
     domains: [
       "127.0.0.1",
       "https://tigawanna-pocketbase.fly.dev",
+      "images.unsplash.com"
     ],
   },
   reactStrictMode: false,
