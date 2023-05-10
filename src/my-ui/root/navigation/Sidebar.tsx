@@ -23,12 +23,17 @@ interface SidebarProps
 
 export function Sidebar({className,playlists,}: SidebarProps) {
   return (
-    <div className={cn("pb-12", className)}>
-      <div className="space-y-4 py-4">
-        <div className="px-4 py-2">
-          <h2 className="mb-2 px-2 text-lg font-semibold tracking-tight">
-            Discover
-          </h2>
+    <div 
+    style={{width:'20%'}}
+    className={cn("pb-12 h-full", className)}>
+      <ScrollArea className="h-full px-2 flex flex-col justify-center items-center">
+      <div className=" mb-2 px-2  text-xl font-semibold sticky top-2 ">
+        Discover
+      </div>
+      <div className="space-y-4 py-4 h-full ">
+  
+        <div className="px-4 py-2 h-full">
+
           <div className="space-y-1">
             <Button
               variant="secondary"
@@ -115,6 +120,7 @@ export function Sidebar({className,playlists,}: SidebarProps) {
           </ScrollArea>
         </div>
       </div>
+      </ScrollArea>
     </div>
   );
 }
