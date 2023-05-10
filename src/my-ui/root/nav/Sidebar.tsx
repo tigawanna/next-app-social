@@ -43,7 +43,7 @@ export function NavLinks({}: NavLinksProps) {
                       <Button
                           variant="ghost"
                           size="sm"
-                          className="min-h-12 flex  items-center justify-evenly gap-10 hover:text-accent-foreground">
+                          className="">
                           <Link
                               href={item.route}
                               className=" m-5 ">
